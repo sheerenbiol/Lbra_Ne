@@ -1,6 +1,9 @@
 # Lbra_Ne
 Analysis on effective population size of L. braziliensis populations across South America
 
+### R functions used for downstream G-PhoCS analyses
+Functions are definced in gphocs_Rfunctions.R
+
 ## Points to elaborate on:
 
 - Data to run G-phocs is added.
