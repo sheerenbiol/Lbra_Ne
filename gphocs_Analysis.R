@@ -12,7 +12,8 @@ source('./gphocs_Rfunctions.R')
 
 ### packages:
 #############
-library(car)
+library(car); library(ggthemes)
+library(afex); library(lsmeans)
 
 ### Re-set working dir:
 #######################
@@ -257,14 +258,9 @@ Ne.Bidir.combined$sbset <- c(rep('Set 1',nrow(Ne.Bidir[[1]])), rep('Set 2',nrow(
 
 Ne.Bidir.facetted <- Neplot_all(theta.data.combined = Ne.Bidir.combined, plot.fmt = 'facet'); Ne.Bidir.facetted
 
-### Summary table:
-##################
-Ne.Bidir.summary <- get_summary_Ne(theta.data.combined = Ne.Bidir.combined)
-View(Ne.Bidir.summary)
 
-##################
-### All PLOTS: ###
-##################
+### All PLOTS:
+##############
 Ne.no.migration.facetted
 Ne.AM2ATL.facetted
 Ne.ATL2AM.facetted
@@ -275,3 +271,105 @@ ggarrange(Ne.no.migration.facetted,
           Ne.AM2ATL.facetted,
           Ne.ATL2AM.facetted,
           Ne.Bidir.facetted, nrow = 4)
+
+
+### Summary table:
+##################
+Ne.Bidir.summary <- get_summary_Ne(theta.data.combined = Ne.Bidir.combined)
+View(Ne.Bidir.summary)
+
+
+#############################
+##### Statistical tests #####
+#############################
+## Adding a factor variable for the model:
+Ne.no.migration.combined$mig <- c(rep('NoMIG',nrow(Ne.no.migration.combined)))
+Ne.AM2ATL.combined$mig <- c(rep('AM2ATL',nrow(Ne.AM2ATL.combined)))
+Ne.ATL2AM.combined$mig <-  c(rep('ATL2AM',nrow(Ne.ATL2AM.combined)))
+Ne.Bidir.combined$mig <- c(rep('BIDIR',nrow(Ne.Bidir.combined)))
+
+## Combining data frames:
+Ne.combined.all <- rbind(Ne.no.migration.combined, Ne.AM2ATL.combined, Ne.ATL2AM.combined, Ne.Bidir.combined)
+Ne.combined.all <- Ne.combined.all[,-1]
+Ne.combined.all$mig <- as.factor(Ne.combined.all$mig); Ne.combined.all$sbset <- as.factor(Ne.combined.all$sbset)
+
+### General testing difference in Ne between populations taking the sub-set and migration model into account
+############################################################################################################
+
+## Calculate means and SDs for each combination (between population, subset and model):
+doBy::summary_by(Ne_value ~ Ne_pop + sbset + mig, data=Ne.combined.all, FUN = c(mean, sd, length))
+
+## MAIN EFFECTS Multi-way ANOVA (Only additive effects included):
+afex::set_treatment_contrasts()
+#afex::set_sum_contrasts()
+Ne.meff.aov <- aov(Ne_value ~ Ne_pop + mig + sbset, data = Ne.combined.all); summary(Ne.meff.aov)
+# --> significant difference of Ne between populations AND between models
+# --> NO significant effects observed between sub-sets --> is how we would like it.
+# Visually:
+plot(effects::allEffects(mod = Ne.meff.aov)) #error bars = 95% confidence intervals
+
+# --> fitted coefficients & adjusted R-squared:
+summary.lm(Ne.meff.aov) #R-sq = 0.64 | F = 96.55 df= 8 & 423 p < 2.2e-16
+# Intercept = mean for WAM subset1 of AM2ATL model = reference level
+# significance between WAM and all other populations & AM2ATL with ATL2AM only
+Anova(Ne.meff.aov, type=3) ## type 3 Sums of Squares calculation -->
+
+# --> model fit:
+AIC(Ne.meff.aov)
+
+# --> post hoc analysis + plot
+TukeyHSD(Ne.meff.aov)
+#post.hoc.df <- data.frame(summary(lsmeans::lsmeans(Ne.meff.aov, ~ Ne_pop * sbset * mig)))
+#post.hoc.plot <- ggplot(post.hoc.df, aes(x=Ne_pop, y=lsmean, colour=Ne_pop, group=mig, ymin=lower.CL, ymax=upper.CL)) +
+#  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0, linewidth=1) +
+#  geom_point(stat='identity', size=2) +
+#  facet_wrap( ~ mig + sbset) +
+#  theme_few() +
+#  theme(legend.position="none") +
+#  labs(y = "Effective population size", x="Population")
+#post.hoc.plot
+
+# --> means per factor:
+tmp <- data.frame(summary(lsmeans::lsmeans(Ne.meff.aov, ~ Ne_pop )))
+tmp[1,2]/tmp[3,2] # ATL is 1.7 times lower than WAM
+tmp[2,2]/tmp[3,2] # ATL is 2.6 times lower than CAM
+tmp[4,2]/tmp[3,2] # ATL is 3.1 times lower than AM
+
+## FULL FACTORIAL Multi-way ANOVA (including interaction effects):
+#afex::set_treatment_contrasts()
+#Ne.ff.aov <- aov(Ne_value ~ Ne_pop * mig * sbset, data = Ne.combined.all); summary(Ne.ff.aov)
+# --> significant effect of Ne_pop and mig + significant interaction effect of Ne_pop::subset
+# --> population and model work additively | interaction between pop and subset
+# Visually:
+#plot(effects::allEffects(mod = Ne.ff.aov)) #error bars = 95% confidence intervals
+# --> fitted coefficients & adjusted R-squared:
+#summary.lm(Ne.ff.aov) #R-sq = 0.65 | F = 18.39 df= 47 & 384 p < 2.2e-16
+# Intercept = mean for WAM subset1 of AM2ATL model = reference level
+# significance between WAM and all other populations & AM2ATL with ATL2AM only marginally significant.
+# subset 1 is different from subset 2
+# --> model fit:
+#AIC(Ne.ff.aov)
+# ==> Lower AIC - so FULL FACTORIAL model is less parsimonious.
+
+
+
+
+
+
+
+### Summary statistics:
+#######################
+## Adding a factor variable for the model:
+Ne.no.migration.summary$mig <- c(rep('NoMIG',nrow(Ne.no.migration.summary)))
+Ne.AM2ATL.summary$mig <- c(rep('AM2ATL',nrow(Ne.AM2ATL.summary)))
+Ne.ATL2AM.summary$mig <- c(rep('ATL2AM',nrow(Ne.ATL2AM.summary)))
+Ne.Bidir.summary$mig <- c(rep('BIDIR',nrow(Ne.Bidir.summary)))
+## Combining data frames:
+Ne.summary.all <- rbind(Ne.no.migration.summary, Ne.AM2ATL.summary, Ne.ATL2AM.summary, Ne.Bidir.summary)
+
+
+
+
+
+
+
