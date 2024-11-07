@@ -7,7 +7,6 @@
 
 ### Import functions:
 #####################
-setwd('~/Dropbox/Projects/Repositories/Lbra_Ne/')
 source('./gphocs_Rfunctions.R')
 
 ### packages:
