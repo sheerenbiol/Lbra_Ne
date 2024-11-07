@@ -14,10 +14,6 @@ source('./gphocs_Rfunctions.R')
 library(car); library(ggthemes)
 library(afex); library(lsmeans)
 
-### Re-set working dir:
-#######################
-setwd('~/Dropbox/Projects/Lbraz_genome_paper/Lbraziliensis/3_LBRA/2_Popgen/2_Popgen_with_PER186/10_G-PhoCS/')
-
 
 #################################
 ##### MODEL 1: NO MIGRATION #####

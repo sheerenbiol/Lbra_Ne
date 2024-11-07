@@ -24,7 +24,7 @@ calc_ess <- function(mig.mod = c('No', 'AM2ATL', 'ATL2AM','BiDir'), sub_sample =
 
   ## Set paths for the respective model that was used
   if(mig.mod == 'No') {
-    main_path <- './3_GPhoCS_output/1_NoMigration/'
+    main_path <- './GPhoCS_Data/1_NoMigration/'
     logs <- list.files(paste0(main_path,sub_sample), pattern = 'gphocs.log')
 
     ## Calculate ESS:
@@ -42,7 +42,7 @@ calc_ess <- function(mig.mod = c('No', 'AM2ATL', 'ATL2AM','BiDir'), sub_sample =
     }
 
   } else if (mig.mod == 'AM2ATL') {
-    main_path <- './3_GPhoCS_output/2_AM2ATL/'
+    main_path <- './GPhoCS_Data/2_AM2ATL/'
     logs <- list.files(paste0(main_path,sub_sample), pattern = 'gphocs.log')
 
     ## Calculate ESS:
@@ -60,7 +60,7 @@ calc_ess <- function(mig.mod = c('No', 'AM2ATL', 'ATL2AM','BiDir'), sub_sample =
     }
 
   } else if (mig.mod == 'ATL2AM'){
-    main_path <- './3_GPhoCS_output/3_ATL2AM/'
+    main_path <- './GPhoCS_Data/3_ATL2AM/'
     logs <- list.files(paste0(main_path,sub_sample), pattern = 'gphocs.log')
 
     ## Calculate ESS:
@@ -78,7 +78,7 @@ calc_ess <- function(mig.mod = c('No', 'AM2ATL', 'ATL2AM','BiDir'), sub_sample =
     }
 
   } else if (mig.mod == 'BiDir'){
-    main_path <- './3_GPhoCS_output/4_ATLAM_Bidir/'
+    main_path <- './GPhoCS_Data/4_ATLAM_Bidir/'
     logs <- list.files(paste0(main_path,sub_sample), pattern = 'gphocs.log')
 
     ## Calculate ESS:
@@ -115,7 +115,7 @@ calc_Ne_from_theta <- function(mig.mod = c('No', 'AM2ATL', 'ATL2AM','BiDir'),
 
   ## Set paths for the respective model that was used
   if(mig.mod == 'No') {
-    main_path <- './3_GPhoCS_output/1_NoMigration/'
+    main_path <- './GPhoCS_Data/1_NoMigration/'
     logs <- list.files(paste0(main_path,sub_sample), pattern = 'gphocs.log')
 
     ## Calculate Ne:
@@ -144,7 +144,7 @@ calc_Ne_from_theta <- function(mig.mod = c('No', 'AM2ATL', 'ATL2AM','BiDir'),
     thetas.all.long$Ne_value <- as.numeric(thetas.all.long$Ne_value)
 
   } else if (mig.mod == 'AM2ATL') {
-    main_path <- './3_GPhoCS_output/2_AM2ATL/'
+    main_path <- './GPhoCS_Data/2_AM2ATL/'
     logs <- list.files(paste0(main_path,sub_sample), pattern = 'gphocs.log')
 
     ## Calculate Ne:
@@ -173,7 +173,7 @@ calc_Ne_from_theta <- function(mig.mod = c('No', 'AM2ATL', 'ATL2AM','BiDir'),
     thetas.all.long$Ne_value <- as.numeric(thetas.all.long$Ne_value)
 
   } else if (mig.mod == 'ATL2AM'){
-    main_path <- './3_GPhoCS_output/3_ATL2AM/'
+    main_path <- './GPhoCS_Data/3_ATL2AM/'
     logs <- list.files(paste0(main_path,sub_sample), pattern = 'gphocs.log')
 
     ## Calculate Ne:
@@ -202,7 +202,7 @@ calc_Ne_from_theta <- function(mig.mod = c('No', 'AM2ATL', 'ATL2AM','BiDir'),
     thetas.all.long$Ne_value <- as.numeric(thetas.all.long$Ne_value)
 
   } else if (mig.mod == 'BiDir'){
-    main_path <- './3_GPhoCS_output/4_ATLAM_Bidir/'
+    main_path <- './GPhoCS_Data/4_ATLAM_Bidir/'
     logs <- list.files(paste0(main_path,sub_sample), pattern = 'gphocs.log')
 
     ## Calculate Ne:
