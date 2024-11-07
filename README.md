@@ -12,22 +12,22 @@ Analyses were performed with:
 R scripts are available for the downstream analyses based on the output from G-PhoCS.
 
 Two scripts:
-- *gphocs_Rfunctions.R* --> pretty self-explanatory: it contains all functions defined for data analysis and visualization
-- *gphocs_Analysis.R* --> the script with the actual data analysis and visualization.
+- **gphocs_Rfunctions.R** --> pretty self-explanatory: it contains all functions defined for data analysis and visualization
+- **gphocs_Analysis.R** --> the script with the actual data analysis and visualization.
 
-Data for the analyses is provided in the *GPhoCS_DATA* folder.
+Data for the analyses is provided in the **GPhoCS_DATA** folder.
 Scripts should be able to run as is.
 
-G-PhoCS analyses were done in R version 4.0.5. Information on the Session and the packages can be found in: *gphocs_Rsession.txt*
+G-PhoCS analyses were done in R version 4.0.5. Information on the Session and the packages can be found in: **gphocs_Rsession.txt**
 
 ## MSMC2
 R script is available for the downstream visualization of the MSMC2 output.
 
 Script:
-- *MSMC2_plotting.R* 
+- **MSMC2_plotting.R** 
 
-Data for the visualization is provided in the *MSMC2_Data* folder.
+Data for the visualization is provided in the **MSMC2_Data** folder.
 Scripts should be able to run as is.
 
-MSMC2 analyses were done in R version 4.0.5. Information on the session and the packages can be found in: *msmc2_Rsession.txt*
+MSMC2 analyses were done in R version 4.0.5. Information on the session and the packages can be found in: **msmc2_Rsession.txt**
 
