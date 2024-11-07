@@ -1,6 +1,9 @@
-##########################
-##### MSMC2 ANALYSES #####
-##########################
+##########################################################
+#####           Ne estimation - MSMC2 analysis       #####
+#####              Leishmania Braziliensis           #####
+#####            Genomic population structure        #####
+#####                    South America               #####
+##########################################################
 
 ### Packages:
 library(ggplot2);library(ggforce)
@@ -38,7 +41,7 @@ for ( file in 1:9){ #1:length(data.files)
   #else if (file == 10) {tmp$pop <- c(rep('WAM-1',nrow(tmp))); tmp$pop2 <- c(rep('WAM',nrow(tmp)))}
   #else if (file == 11) {tmp$pop <- c(rep('WAM-2',nrow(tmp))); tmp$pop2 <- c(rep('WAM',nrow(tmp)))}
   #else if (file == 12) {tmp$pop <- c(rep('WAM-3',nrow(tmp))); tmp$pop2 <- c(rep('WAM',nrow(tmp)))}
-  
+
   data.combined[[file]] <- tmp
 }
 
@@ -93,7 +96,7 @@ ggplot(data=data.combined[which(data.combined$time <= 1e07),], aes(x=(time), y=l
   scale_color_manual(values = c("gray50","#723957","#4E87B8","#A2662C","#4E87B8","#4E87B8","#A2662C","#A2662C", "#A2662C","gray50","gray50","gray50"))+
   stat_cor(method = "pearson", label.x = 3, label.y = 8)+
   stat_summary_bin(fun.data='mean_cl_boot', size=0.75)+
-  xlab('No. generations') + ylab('Log. Effective population size') #+ 
+  xlab('No. generations') + ylab('Log. Effective population size') #+
 #xlim(-1,8)
 
 ggplot(data=subset(data.combined, data.combined$pop2 != 'AM'), aes(x=(time), y=log10(popsize), fill=pop, col=pop))+
@@ -103,7 +106,7 @@ ggplot(data=subset(data.combined, data.combined$pop2 != 'AM'), aes(x=(time), y=l
   scale_color_manual(values = c("#723957","#723957","#723957","#4E87B8","#4E87B8","#4E87B8","#A2662C","#A2662C", "#A2662C","gray50","gray50","gray50"))+
   #scale_color_manual(values = c("#723957","#4E87B8","#A2662C","#4E87B8","#4E87B8","#A2662C","#A2662C", "#A2662C","gray50","gray50","gray50"))+
   #stat_summary_bin(fun.data='mean_cl_boot', size=0.75)+
-  xlab('No. generations') + ylab('Log. Effective population size') + 
+  xlab('No. generations') + ylab('Log. Effective population size') +
   theme_bw() +
   theme(axis.text.x=element_text(size=10,angle=0, hjust=0.5)) +
   facet_zoom(xlim=c(0,2.5e07))
@@ -115,7 +118,7 @@ ggplot(data=subset(data.combined, data.combined$pop2 != 'AM')[which(subset(data.
   scale_color_manual(values = c("#723957","#723957","#723957","#4E87B8","#4E87B8","#4E87B8","#A2662C","#A2662C", "#A2662C","gray50","gray50","gray50"))+
   #scale_color_manual(values = c("#723957","#4E87B8","#A2662C","#4E87B8","#4E87B8","#A2662C","#A2662C", "#A2662C","gray50","gray50","gray50"))+
   #stat_summary_bin(fun.data='mean_cl_boot', size=0.5)+
-  xlab('No. generations') + ylab('Log. Effective population size') + 
+  xlab('No. generations') + ylab('Log. Effective population size') +
   theme_bw() +
   theme(axis.text.x=element_text(size=10,angle=0, hjust=0.5)) +
 #facet_zoom(xlim=c(0,1e07))
@@ -159,7 +162,7 @@ for ( file in 1:length(data.files)){
   else if (file == 7) {tmp$pop <- c(rep('WAM-1',nrow(tmp))); tmp$pop2 <- c(rep('WAM',nrow(tmp)))}
   else if (file == 8) {tmp$pop <- c(rep('WAM-2',nrow(tmp))); tmp$pop2 <- c(rep('WAM',nrow(tmp)))}
   else if (file == 9) {tmp$pop <- c(rep('WAM-3',nrow(tmp))); tmp$pop2 <- c(rep('WAM',nrow(tmp)))}
-  
+
   data.combined[[file]] <- tmp
 }
 
@@ -178,7 +181,7 @@ ggplot(data=subset(data.combined, data.combined$pop2 != 'AM')[which(subset(data.
   #scale_color_manual(values = c("#723957","#723957","#723957","#4E87B8","#4E87B8","#4E87B8","#A2662C","#A2662C", "#A2662C","gray50","gray50","gray50"))+
   scale_color_manual(values = c("#723957","#4E87B8","#A2662C","#4E87B8","#4E87B8","#A2662C","#A2662C", "#A2662C","gray50","gray50","gray50"))+
   #stat_summary_bin(fun.data='mean_cl_boot', size=0.5)+
-  xlab('No. generations') + ylab('Log. Effective population size') + 
+  xlab('No. generations') + ylab('Log. Effective population size') +
   theme_bw() +
   theme(axis.text.x=element_text(size=10,angle=0, hjust=0.5)) +
 #facet_zoom(xlim=c(0,1e07))
@@ -213,7 +216,7 @@ for ( file in 1:length(data.files)){
   else if (file == 16) {tmp$pop <- c(rep('WAM-4',nrow(tmp))); tmp$pop2 <- c(rep('WAM',nrow(tmp)))}
   else if (file == 17) {tmp$pop <- c(rep('WAM-5',nrow(tmp))); tmp$pop2 <- c(rep('WAM',nrow(tmp)))}
   else if (file == 18) {tmp$pop <- c(rep('WAM-6',nrow(tmp))); tmp$pop2 <- c(rep('WAM',nrow(tmp)))}
-  
+
   data.combined[[file]] <- tmp
 }
 
@@ -232,7 +235,7 @@ ggplot(data=subset(data.combined, data.combined$pop2 != 'AM')[which(subset(data.
   scale_color_manual(values = c("#723957","#723957","#723957","#723957","#723957","#723957","#4E87B8","#4E87B8","#4E87B8","#4E87B8","#4E87B8","#4E87B8","#A2662C","#A2662C", "#A2662C","#A2662C","#A2662C", "#A2662C"))+
   #scale_color_manual(values = c("#723957","#4E87B8","#A2662C","#4E87B8","#4E87B8","#A2662C","#A2662C", "#A2662C","gray50","gray50","gray50"))+
   #stat_summary_bin(fun.data='mean_cl_boot', size=0.5)+
-  xlab('No. generations') + ylab('Log. Effective population size') + 
+  xlab('No. generations') + ylab('Log. Effective population size') +
   theme_bw() +
   theme(axis.text.x=element_text(size=10,angle=0, hjust=0.5)) +
   #facet_zoom(xlim=c(0,1e07))
@@ -268,14 +271,14 @@ ggplot(data=wam.cam.combined[which(wam.cam.combined$time <= 3e07),], aes(x=(time
   geom_hline(yintercept = 1.00, col='black', linetype='dashed')+
   geom_hline(yintercept = 0.5, col='darkred', linetype='dashed')+
   #stat_summary_bin(fun.data='mean_cl_boot', size=0.5, bins = 100)+
-  xlab('No. generations') + ylab('Relative Cross-Coalescence Rate') + 
+  xlab('No. generations') + ylab('Relative Cross-Coalescence Rate') +
   theme_bw() +
   theme(axis.text.x=element_text(size=10,angle=0, hjust=0.5)) +
   facet_zoom(xlim = c(0,2e06))
   #facet_zoom(xlim = c(3.3e05,5e05))
 
 
-## ==> for WAM-CAM: start of separation between 90,000 and 500,000 generations ago 
+## ==> for WAM-CAM: start of separation between 90,000 and 500,000 generations ago
 
 ## AM-ATL:
 am.atl <- list.files('~/Dropbox/Projects/Lbraz_genome_paper/Lbraziliensis/3_LBRA/2_Popgen/2_Popgen_with_PER186/10_G-PhoCS/4_MSMC2/3_msmc2_output/3_AllSNPs_EM500/CrossPopulation/', pattern = 'combined_AM-ATL')
@@ -300,7 +303,7 @@ ggplot(data=am.atl.combined[which(wam.cam.combined$time <= 3e07),], aes(x=(time)
   geom_hline(yintercept = 1.00, col='black', linetype='dashed')+
   geom_hline(yintercept = 0.5, col='darkred', linetype='dashed')+
   #stat_summary_bin(fun.data='mean_cl_boot', size=0.5, bins = 100)+
-  xlab('No. generations') + ylab('Relative Cross-Coalescence Rate') + 
+  xlab('No. generations') + ylab('Relative Cross-Coalescence Rate') +
   theme_bw() +
   theme(axis.text.x=element_text(size=10,angle=0, hjust=0.5)) +
   facet_zoom(xlim = c(0,6e06))
