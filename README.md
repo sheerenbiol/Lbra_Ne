@@ -5,13 +5,13 @@ Heeren, S., Sanders, M., Shaw, J. J., Brandão-Filho, S. P., Côrtes Boité, M.,
 
 Analyses were performed with:
 - (G-PhoCS)[https://github.com/gphocs-dev/G-PhoCS]
-- (MSMC2)[]
+- (MSMC2)[https://github.com/stschiff/msmc2]
 
 
 ## G-PhoCS
 R scripts are available for the downstream analyses based on the output from G-PhoCS.
 
-Two scripts are available:
+Two scripts:
 - *gphocs_Rfunctions.R* --> pretty self-explanatory: it contains all functions defined for data analysis and visualization
 - *gphocs_Analysis.R* --> the script with the actual data analysis and visualization.
 
@@ -21,13 +21,13 @@ Scripts should be able to run as is.
 G-PhoCS analyses were done in R version 4.0.5. Information on the Session and the packages can be found in: *gphocs_Rsession.txt*
 
 ## MSMC2
+R script is available for the downstream visualization of the MSMC2 output.
 
+Script:
+- *MSMC2_plotting.R* 
 
-## Points to elaborate on:
+Data for the visualization is provided in the *MSMC2_Data* folder.
+Scripts should be able to run as is.
 
-- Data to run G-phocs is added.
-- script and functions for downstream analyses in R are provided.
+MSMC2 analyses were done in R version 4.0.5. Information on the session and the packages can be found in: *msmc2_Rsession.txt*
 
-- Data is an subset of the entire data that is analysed
-	- only used on 1 subset of individuals and two models (No migration and bi-directional)
-	- Perhaps only a few or ALL chromosomes are added.
